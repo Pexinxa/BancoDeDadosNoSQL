@@ -12,7 +12,7 @@ import ConfirmDialog from "../common/ConfirmDialog";
 import * as api from "../../services/api";
 import { getCoverUrl } from "../../utils/coverImage";
 
-const BRAND_COLOR = "#0071e3";
+const BRAND_COLOR = "#7C3AED";
 
 function ActionConfirm({ open, onClose, onConfirm, title, message, label, color, icon, loading }) {
   return (

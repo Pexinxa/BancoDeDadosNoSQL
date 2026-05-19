@@ -56,14 +56,24 @@ export default function HomePage({ onRequestAuth }) {
       {/* ── Hero ── */}
       <Box
         sx={{
-          background: "linear-gradient(160deg, #0071e3 0%, #1d1d1f 100%)",
+          background: "linear-gradient(160deg, #160B30 0%, #0E0720 80%, #0E0720 100%)",
           py: { xs: 8, md: 12 },
           px: 2,
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Círculos decorativos */}
+        {/* Orbs decorativos */}
+        <Box sx={{
+          position: "absolute", width: 500, height: 500, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%)",
+          top: "-20%", left: "-10%", pointerEvents: "none",
+        }} />
+        <Box sx={{
+          position: "absolute", width: 400, height: 400, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(79,70,229,0.14) 0%, transparent 70%)",
+          bottom: "-15%", right: "5%", pointerEvents: "none",
+        }} />
         {[300, 200, 120].map((size, i) => (
           <Box
             key={i}
@@ -71,7 +81,7 @@ export default function HomePage({ onRequestAuth }) {
               position: "absolute",
               width: size, height: size,
               borderRadius: "50%",
-              border: "1px solid rgba(255,255,255,0.05)",
+              border: "1px solid rgba(167,139,250,0.08)",
               top: `${20 + i * 15}%`,
               right: `${5 + i * 8}%`,
             }}
@@ -84,29 +94,46 @@ export default function HomePage({ onRequestAuth }) {
               <Chip
                 label="Bem-vindo à Biblioteca Digital"
                 sx={{
-                  mb: 3, background: "rgba(255,255,255,0.15)",
-                  color: "#fff", fontWeight: 500, backdropFilter: "blur(10px)",
+                  mb: 3,
+                  background: "rgba(167,139,250,0.12)",
+                  color: "#A78BFA",
+                  fontWeight: 600,
+                  backdropFilter: "blur(10px)",
+                  border: "1px solid rgba(167,139,250,0.25)",
                 }}
               />
               <Typography
                 variant="h2"
-                fontWeight={800}
                 sx={{
-                  fontSize: { xs: "2.2rem", md: "3.5rem" },
-                  letterSpacing: "-0.03em",
+                  fontSize: { xs: "2.4rem", md: "3.8rem" },
+                  letterSpacing: "-0.02em",
                   lineHeight: 1.1,
-                  mb: 2,
+                  mb: 1,
+                  color: "#fff",
                 }}
               >
-                Seu universo de livros,
-                <br />
-                <span style={{ color: "#2997ff" }}>na palma da mão</span>
+                Leia mais. Descubra mais.
+              </Typography>
+              <Typography
+                variant="h2"
+                sx={{
+                  fontSize: { xs: "2.4rem", md: "3.8rem" },
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.2,
+                  mb: 3,
+                  background: "linear-gradient(135deg, #A78BFA 0%, #7C3AED 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Seja mais.
               </Typography>
               <Typography
                 variant="h6"
-                sx={{ opacity: 0.8, fontWeight: 400, mb: 4, maxWidth: 500, mx: "auto" }}
+                sx={{ color: "rgba(255,255,255,0.6)", fontWeight: 400, mb: 4, maxWidth: 540, mx: "auto", lineHeight: 1.7 }}
               >
-                Explore, empreste e acompanhe seu histórico de leituras com facilidade.
+                A biblioteca que acompanha o seu ritmo de vida — explore, empreste e acompanhe seu histórico de leituras com facilidade.
               </Typography>
 
               {/* Busca no hero */}
@@ -130,10 +157,13 @@ export default function HomePage({ onRequestAuth }) {
                       </InputAdornment>
                     ),
                     sx: {
-                      background: "#fff",
+                      background: "rgba(255,255,255,0.06)",
+                      backdropFilter: "blur(12px)",
                       borderRadius: 3,
-                      "& fieldset": { border: "none" },
-                      boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+                      "& fieldset": { border: "1px solid rgba(167,139,250,0.3)" },
+                      "&:hover fieldset": { border: "1px solid rgba(167,139,250,0.5)" },
+                      color: "#fff",
+                      boxShadow: "0 8px 32px rgba(124,58,237,0.15)",
                     },
                   }}
                 />

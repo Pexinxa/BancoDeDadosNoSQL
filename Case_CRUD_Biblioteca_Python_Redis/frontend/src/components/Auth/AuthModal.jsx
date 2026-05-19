@@ -62,7 +62,7 @@ export default function AuthModal({ open, onClose }) {
       PaperProps={{ sx: { borderRadius: 4, overflow: "hidden" } }}
     >
       {/* Header decorativo */}
-      <Box sx={{ background: "linear-gradient(135deg, #0071e3 0%, #2997ff 100%)", py: 3, px: 3, textAlign: "center" }}>
+      <Box sx={{ background: "linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%)", py: 3, px: 3, textAlign: "center" }}>
         <MenuBook sx={{ fontSize: 40, color: "#fff", mb: 1 }} />
         <Typography variant="h6" fontWeight={700} color="#fff">Biblioteca Digital</Typography>
         <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.8)", mt: 0.5 }}>
@@ -74,7 +74,7 @@ export default function AuthModal({ open, onClose }) {
         value={tab}
         onChange={(_, v) => { setTab(v); setError(""); }}
         centered
-        sx={{ borderBottom: "1px solid rgba(0,0,0,0.08)", "& .MuiTabs-indicator": { height: 3, borderRadius: 2 } }}
+        sx={{ borderBottom: "1px solid rgba(167,139,250,0.2)", "& .MuiTabs-indicator": { height: 3, borderRadius: 2 } }}
       >
         <Tab label="Entrar" />
         <Tab label="Criar conta" />

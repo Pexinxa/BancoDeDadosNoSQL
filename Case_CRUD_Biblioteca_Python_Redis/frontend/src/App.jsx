@@ -61,7 +61,7 @@ function AppContent() {
         component="footer"
         sx={{
           py: 4, px: 2,
-          borderTop: "1px solid rgba(0,0,0,0.06)",
+          borderTop: "1px solid rgba(167,139,250,0.2)",
           textAlign: "center",
           color: "text.secondary",
           fontSize: "0.8rem",

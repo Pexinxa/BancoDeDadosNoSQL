@@ -25,7 +25,7 @@ function StatBox({ label, value }) {
       elevation={0}
       sx={{
         p: 2.5, borderRadius: 3, flex: 1,
-        border: "1px solid rgba(0,0,0,0.06)",
+        border: "1px solid rgba(167,139,250,0.2)",
         textAlign: "center",
       }}
     >
@@ -165,7 +165,7 @@ export default function AdminPage() {
 
       {/* ── ABA LIVROS ── */}
       {tab === 0 && (
-        <Paper elevation={0} sx={{ borderRadius: 4, border: "1px solid rgba(0,0,0,0.06)" }}>
+        <Paper elevation={0} sx={{ borderRadius: 4, border: "1px solid rgba(167,139,250,0.2)" }}>
           {/* Toolbar */}
           <Box sx={{ p: 2, display: "flex", gap: 1.5, alignItems: "center", flexWrap: "wrap" }}>
             <TextField
@@ -213,7 +213,7 @@ export default function AdminPage() {
                       <Card
                         key={livro.id}
                         elevation={0}
-                        sx={{ borderRadius: 3, border: "1px solid rgba(0,0,0,0.07)" }}
+                        sx={{ borderRadius: 3, border: "1px solid rgba(167,139,250,0.2)" }}
                       >
                         <CardContent sx={{ pb: 1 }}>
                           <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", mb: 0.5 }}>
@@ -355,7 +355,7 @@ export default function AdminPage() {
 
       {/* ── ABA USUÁRIOS ── */}
       {tab === 1 && (
-        <Paper elevation={0} sx={{ borderRadius: 4, border: "1px solid rgba(0,0,0,0.06)" }}>
+        <Paper elevation={0} sx={{ borderRadius: 4, border: "1px solid rgba(167,139,250,0.2)" }}>
           {/* Toolbar */}
           <Box sx={{ p: 2, display: "flex", gap: 1.5, alignItems: "center" }}>
             <TextField
@@ -386,7 +386,7 @@ export default function AdminPage() {
                   <Card
                     key={u.username}
                     elevation={0}
-                    sx={{ borderRadius: 3, border: "1px solid rgba(0,0,0,0.07)" }}
+                    sx={{ borderRadius: 3, border: "1px solid rgba(167,139,250,0.2)" }}
                   >
                     <CardContent sx={{ pb: "12px !important" }}>
                       <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

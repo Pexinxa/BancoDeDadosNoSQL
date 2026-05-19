@@ -14,10 +14,10 @@ export default function ConfirmDialog({
   loading = false,
 }) {
   const colorMap = {
-    primary: { bg: "rgba(0,113,227,0.08)", fg: "#0071e3" },
-    error:   { bg: "rgba(255,59,48,0.08)",  fg: "#ff3b30" },
-    warning: { bg: "rgba(255,159,10,0.08)", fg: "#ff9f0a" },
-    success: { bg: "rgba(52,199,89,0.08)",  fg: "#34c759" },
+    primary: { bg: "rgba(124,58,237,0.12)",  fg: "#A78BFA" },
+    error:   { bg: "rgba(248,113,113,0.12)", fg: "#F87171" },
+    warning: { bg: "rgba(167,139,250,0.12)", fg: "#A78BFA" },
+    success: { bg: "rgba(93,202,165,0.12)",  fg: "#5DCAA5" },
   };
   const colors = colorMap[confirmColor] || colorMap.primary;
 

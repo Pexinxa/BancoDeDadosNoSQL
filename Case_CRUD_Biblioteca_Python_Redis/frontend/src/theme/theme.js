@@ -1,139 +1,317 @@
 import { createTheme } from "@mui/material/styles";
 
+// ── Tokens de cor — exportados para uso nos componentes ──────────────────────
+export const C = {
+  bgDeep:     "#0E0720",
+  bgMid:      "#160B30",
+  bgCard:     "rgba(255,255,255,0.04)",
+
+  purple50:   "#EEEDFE",
+  purple100:  "#CECBF6",
+  purple200:  "#AFA9EC",
+  purple400:  "#7F77DD",
+  purple600:  "#534AB7",
+  purple800:  "#3C3489",
+  purple900:  "#26215C",
+
+  accent:      "#A78BFA",
+  accentDeep:  "#7C3AED",
+  accentBtn:   "linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%)",
+  accentHover: "linear-gradient(135deg, #6D28D9 0%, #4338CA 100%)",
+
+  border:   "rgba(167,139,250,0.2)",
+  borderMd: "rgba(167,139,250,0.4)",
+
+  textPrimary: "#FFFFFF",
+  textMuted:   "rgba(255,255,255,0.55)",
+  textHint:    "rgba(255,255,255,0.35)",
+
+  // Status
+  availableBg:   "rgba(29,158,117,0.15)",
+  availableText: "#5DCAA5",
+  borrowedBg:    "rgba(167,139,250,0.12)",
+  borrowedText:  "#A78BFA",
+};
+
 const theme = createTheme({
   palette: {
-    mode: "light",
+    mode: "dark",
     primary: {
-      main: "#0071e3",
-      light: "#2997ff",
-      dark: "#0051a2",
-      contrastText: "#ffffff",
+      main:         C.accent,
+      dark:         C.accentDeep,
+      light:        C.purple200,
+      contrastText: "#FFFFFF",
     },
     secondary: {
-      main: "#1d1d1f",
-      light: "#3d3d3f",
-      dark: "#000000",
-      contrastText: "#ffffff",
+      main:         C.purple600,
+      dark:         C.purple800,
+      light:        C.purple400,
+      contrastText: "#FFFFFF",
+    },
+    success: {
+      main:         C.availableText,
+      dark:         "#1D9E75",
+      light:        C.availableBg,
+      contrastText: C.bgDeep,
+    },
+    warning: {
+      main:         C.accent,
+      dark:         C.accentDeep,
+      light:        C.borrowedBg,
+      contrastText: "#FFFFFF",
+    },
+    error: {
+      main: "#F87171",
+      dark: "#EF4444",
     },
     background: {
-      default: "#fbfbfd",
-      paper: "#ffffff",
+      default: C.bgDeep,
+      paper:   C.bgMid,
     },
     text: {
-      primary: "#1d1d1f",
-      secondary: "#6e6e73",
+      primary:   C.textPrimary,
+      secondary: C.textMuted,
+      disabled:  C.textHint,
     },
-    success: { main: "#34c759" },
-    warning: { main: "#ff9f0a" },
-    error:   { main: "#ff3b30" },
-    divider: "rgba(0,0,0,0.08)",
+    divider: C.border,
   },
 
   typography: {
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    h1: { fontWeight: 700, letterSpacing: "-0.02em" },
-    h2: { fontWeight: 700, letterSpacing: "-0.01em" },
-    h3: { fontWeight: 600, letterSpacing: "-0.01em" },
-    h4: { fontWeight: 600 },
-    h5: { fontWeight: 600 },
-    h6: { fontWeight: 600 },
-    body1: { fontSize: "1rem", lineHeight: 1.6 },
-    body2: { fontSize: "0.875rem", lineHeight: 1.5, color: "#6e6e73" },
-    button: { textTransform: "none", fontWeight: 500 },
+    fontFamily: "'DM Sans', sans-serif",
+    h1: { fontFamily: "'Playfair Display', serif", fontWeight: 900 },
+    h2: { fontFamily: "'Playfair Display', serif", fontWeight: 900 },
+    h3: { fontFamily: "'Playfair Display', serif", fontWeight: 700 },
+    h4: { fontFamily: "'Playfair Display', serif", fontWeight: 700 },
+    h5: { fontFamily: "'Playfair Display', serif", fontWeight: 700 },
+    h6: { fontFamily: "'Playfair Display', serif", fontWeight: 700 },
+    subtitle1: { fontWeight: 600 },
+    subtitle2: { fontWeight: 600 },
+    body2: { fontSize: "0.875rem", lineHeight: 1.5 },
+    button: { fontWeight: 600, textTransform: "none" },
   },
 
   shape: { borderRadius: 12 },
 
-  shadows: [
-    "none",
-    "0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",
-    "0 4px 6px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.04)",
-    "0 10px 15px rgba(0,0,0,0.07), 0 4px 6px rgba(0,0,0,0.05)",
-    "0 20px 25px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.04)",
-    "0 25px 50px rgba(0,0,0,0.10)",
-    ...Array(19).fill("none"),
-  ],
-
   components: {
-    MuiButton: {
+    // ── Global ──────────────────────────────────────────────────────────────
+    MuiCssBaseline: {
       styleOverrides: {
-        root: {
-          borderRadius: 20,
-          padding: "8px 20px",
-          fontWeight: 500,
-          transition: "all 0.2s ease",
-          "&:hover": { transform: "translateY(-1px)" },
-        },
-        containedPrimary: {
-          background: "linear-gradient(135deg, #0071e3 0%, #2997ff 100%)",
-          boxShadow: "0 4px 15px rgba(0,113,227,0.3)",
-          "&:hover": {
-            background: "linear-gradient(135deg, #0051a2 0%, #0071e3 100%)",
-            boxShadow: "0 6px 20px rgba(0,113,227,0.4)",
-          },
-        },
-        outlined: {
-          borderWidth: 1.5,
-          "&:hover": { borderWidth: 1.5 },
-        },
+        "*, *::before, *::after": { boxSizing: "border-box" },
+        body: { background: C.bgDeep, color: C.textPrimary },
       },
     },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: 16,
-          boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
-          border: "1px solid rgba(0,0,0,0.05)",
-          transition: "all 0.3s ease",
-          "&:hover": {
-            boxShadow: "0 8px 30px rgba(0,0,0,0.10)",
-            transform: "translateY(-2px)",
-          },
-        },
-      },
-    },
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          "& .MuiOutlinedInput-root": {
-            borderRadius: 10,
-            "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#0071e3",
-            },
-          },
-        },
-      },
-    },
-    MuiChip: {
-      styleOverrides: {
-        root: { borderRadius: 8, fontWeight: 500 },
-      },
-    },
+
+    // ── AppBar ───────────────────────────────────────────────────────────────
     MuiAppBar: {
+      defaultProps: { elevation: 0 },
       styleOverrides: {
         root: {
-          background: "rgba(255,255,255,0.85)",
-          backdropFilter: "blur(20px)",
-          WebkitBackdropFilter: "blur(20px)",
-          borderBottom: "1px solid rgba(0,0,0,0.08)",
-          boxShadow: "none",
-          color: "#1d1d1f",
+          background:           "rgba(14,7,32,0.75)",
+          backdropFilter:       "blur(18px)",
+          WebkitBackdropFilter: "blur(18px)",
+          borderBottom:         `1px solid ${C.border}`,
         },
       },
     },
+
+    // ── Buttons ──────────────────────────────────────────────────────────────
+    MuiButton: {
+      defaultProps: { disableElevation: true },
+      styleOverrides: {
+        root: { borderRadius: 8, fontWeight: 600, textTransform: "none" },
+        containedPrimary: {
+          background: C.accentBtn,
+          "&:hover":  { background: C.accentHover },
+        },
+        outlinedPrimary: {
+          borderColor: C.border,
+          color:       C.accent,
+          "&:hover":   { borderColor: C.borderMd, background: "rgba(167,139,250,0.06)" },
+        },
+      },
+    },
+
+    // ── Cards ────────────────────────────────────────────────────────────────
+    MuiCard: {
+      defaultProps: { elevation: 0 },
+      styleOverrides: {
+        root: {
+          background:     C.bgCard,
+          border:         `1px solid ${C.border}`,
+          borderRadius:   16,
+          backdropFilter: "blur(8px)",
+          transition:     "border-color 0.2s, background 0.2s",
+          "&:hover": {
+            borderColor: C.borderMd,
+            background:  "rgba(167,139,250,0.08)",
+          },
+        },
+      },
+    },
+
+    // ── Paper ────────────────────────────────────────────────────────────────
+    MuiPaper: {
+      defaultProps: { elevation: 0 },
+      styleOverrides: {
+        root: {
+          backgroundImage: "none",
+          background:      C.bgMid,
+          border:          `1px solid ${C.border}`,
+        },
+      },
+    },
+
+    // ── Dialog ───────────────────────────────────────────────────────────────
     MuiDialog: {
       styleOverrides: {
-        paper: { borderRadius: 20 },
+        paper: {
+          background:   C.bgMid,
+          border:       `1px solid ${C.border}`,
+          borderRadius: 20,
+        },
       },
     },
-    MuiPaper: {
+
+    // ── Inputs ───────────────────────────────────────────────────────────────
+    MuiOutlinedInput: {
       styleOverrides: {
-        root: { borderRadius: 16 },
+        root: {
+          "& .MuiOutlinedInput-notchedOutline": { borderColor: C.border },
+          "&:hover .MuiOutlinedInput-notchedOutline": { borderColor: C.borderMd },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: C.accent,
+            boxShadow:   "0 0 0 4px rgba(124,58,237,0.15)",
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: C.textMuted,
+          "&.Mui-focused": { color: C.accent },
+        },
+      },
+    },
+
+    // ── Chips ────────────────────────────────────────────────────────────────
+    MuiChip: {
+      styleOverrides: {
+        root:             { fontWeight: 600 },
+        colorSuccess:     { background: C.availableBg,  color: C.availableText, border: "none" },
+        colorWarning:     { background: C.borrowedBg,   color: C.borrowedText,  border: "none" },
+        outlinedSuccess:  { borderColor: C.availableText, color: C.availableText },
+        outlinedWarning:  { borderColor: C.borrowedText,  color: C.borrowedText  },
+      },
+    },
+
+    // ── Divider ──────────────────────────────────────────────────────────────
+    MuiDivider: {
+      styleOverrides: { root: { borderColor: C.border } },
+    },
+
+    // ── Table ────────────────────────────────────────────────────────────────
+    MuiTableHead: {
+      styleOverrides: {
+        root: {
+          "& .MuiTableCell-head": {
+            background:    "rgba(167,139,250,0.06)",
+            color:         C.textMuted,
+            fontWeight:    600,
+            fontSize:      12,
+            textTransform: "uppercase",
+            letterSpacing: "0.06em",
+          },
+        },
       },
     },
     MuiTableCell: {
+      styleOverrides: { root: { borderColor: C.border } },
+    },
+    MuiTableRow: {
       styleOverrides: {
-        head: { fontWeight: 600, color: "#1d1d1f", background: "#f5f5f7" },
+        root: {
+          "&.MuiTableRow-hover:hover": { background: "rgba(167,139,250,0.05)" },
+        },
+      },
+    },
+
+    // ── Tabs ─────────────────────────────────────────────────────────────────
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          fontWeight: 600,
+          color: C.textMuted,
+          "&.Mui-selected": { color: C.accent },
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: { indicator: { background: C.accent } },
+    },
+
+    // ── Avatar ───────────────────────────────────────────────────────────────
+    MuiAvatar: {
+      styleOverrides: {
+        root: { background: "rgba(167,139,250,0.2)", color: C.accent },
+      },
+    },
+
+    // ── ListItemButton ───────────────────────────────────────────────────────
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          "&.Mui-selected": { background: "rgba(167,139,250,0.12)", color: C.accent },
+          "&:hover":         { background: "rgba(167,139,250,0.08)" },
+        },
+      },
+    },
+
+    // ── Drawer ───────────────────────────────────────────────────────────────
+    MuiDrawer: {
+      styleOverrides: {
+        paper: { background: C.bgDeep, borderRight: `1px solid ${C.border}` },
+      },
+    },
+
+    // ── Menu ─────────────────────────────────────────────────────────────────
+    MuiMenu: {
+      styleOverrides: {
+        paper: { background: C.bgMid, border: `1px solid ${C.border}`, borderRadius: 12 },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: { "&:hover": { background: "rgba(167,139,250,0.08)" } },
+      },
+    },
+
+    // ── Pagination ───────────────────────────────────────────────────────────
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          color: C.textMuted,
+          "&.Mui-selected": { background: C.accentBtn, color: "#fff" },
+        },
+      },
+    },
+
+    // ── Autocomplete ─────────────────────────────────────────────────────────
+    MuiAutocomplete: {
+      styleOverrides: {
+        paper: { background: C.bgMid, border: `1px solid ${C.border}` },
+        option: {
+          "&:hover": { background: "rgba(167,139,250,0.08)" },
+          "&[aria-selected='true']": { background: "rgba(167,139,250,0.15)" },
+        },
+      },
+    },
+
+    // ── Skeleton ─────────────────────────────────────────────────────────────
+    MuiSkeleton: {
+      styleOverrides: {
+        root: { background: "rgba(167,139,250,0.08)" },
       },
     },
   },

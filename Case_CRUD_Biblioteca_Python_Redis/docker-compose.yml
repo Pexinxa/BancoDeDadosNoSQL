@@ -37,9 +37,7 @@ services:
       context: ./frontend
     container_name: biblioteca_frontend
     ports:
-      - "5173:5173"
-    environment:
-      - VITE_API_URL=http://localhost:5000
+      - "5173:80"
     depends_on:
       - backend
     restart: unless-stopped

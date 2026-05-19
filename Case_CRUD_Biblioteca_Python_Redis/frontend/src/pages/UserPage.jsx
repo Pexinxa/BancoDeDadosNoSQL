@@ -75,7 +75,7 @@ function EmprestimoCard({ livro, onDevolver }) {
     <>
       <Card
         elevation={0}
-        sx={{ height: "100%", borderRadius: 3, border: "1px solid rgba(0,0,0,0.07)" }}
+        sx={{ height: "100%", borderRadius: 3, border: "1px solid rgba(167,139,250,0.2)" }}
       >
         <CardContent>
           <Box sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
@@ -197,7 +197,8 @@ export default function UserPage() {
         elevation={0}
         sx={{
           p: { xs: 2.5, md: 3 }, mb: 3, borderRadius: 4,
-          background: "linear-gradient(135deg, #0071e3 0%, #1d1d1f 100%)",
+          background: "linear-gradient(135deg, #26215C 0%, #160B30 50%, #0E0720 100%)",
+          border: "1px solid rgba(167,139,250,0.2)",
           color: "#fff",
         }}
       >
@@ -333,7 +334,7 @@ export default function UserPage() {
                 <Grid container spacing={2}>
                   {favoritos.map((livro) => (
                     <Grid item xs={12} sm={6} md={4} key={livro.id}>
-                      <Card elevation={0} sx={{ borderRadius: 3, border: "1px solid rgba(0,0,0,0.07)", height: "100%" }}>
+                      <Card elevation={0} sx={{ borderRadius: 3, border: "1px solid rgba(167,139,250,0.2)", height: "100%" }}>
                         <CardContent>
                           <Box sx={{ display: "flex", gap: 1.5 }}>
                             <Avatar sx={{ bgcolor: "error.light", width: 40, height: 40, flexShrink: 0 }}>
@@ -375,7 +376,7 @@ export default function UserPage() {
                 <Grid container spacing={2}>
                   {espera.map((livro) => (
                     <Grid item xs={12} sm={6} md={4} key={livro.id}>
-                      <Card elevation={0} sx={{ borderRadius: 3, border: "1px solid rgba(0,0,0,0.07)" }}>
+                      <Card elevation={0} sx={{ borderRadius: 3, border: "1px solid rgba(167,139,250,0.2)" }}>
                         <CardContent>
                           <Box sx={{ display: "flex", gap: 1.5 }}>
                             <Avatar sx={{ bgcolor: "warning.light", width: 40, height: 40, flexShrink: 0 }}>
@@ -402,7 +403,7 @@ export default function UserPage() {
             notificacoes.length === 0
               ? <EmptyState message="Nenhuma notificação por enquanto" />
               : (
-                <Paper elevation={0} sx={{ borderRadius: 3, border: "1px solid rgba(0,0,0,0.06)" }}>
+                <Paper elevation={0} sx={{ borderRadius: 3, border: "1px solid rgba(167,139,250,0.2)" }}>
                   <List disablePadding>
                     {notificacoes.map((n, i) => (
                       <React.Fragment key={n.index}>
@@ -410,7 +411,7 @@ export default function UserPage() {
                           sx={{
                             py: { xs: 1.5, md: 2 },
                             px: { xs: 2, md: 3 },
-                            bgcolor: n.lida ? "transparent" : "primary.50",
+                            bgcolor: n.lida ? "transparent" : "rgba(167,139,250,0.07)",
                             opacity: n.lida ? 0.6 : 1,
                             transition: "opacity 0.2s, background 0.2s",
                           }}

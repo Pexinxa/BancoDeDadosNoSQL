@@ -37,11 +37,11 @@ export default function Header({ onOpenAuth, notifCount = 0 }) {
       onClose={() => setDrawerOpen(false)}
       PaperProps={{ sx: { width: 280, borderRadius: "0 16px 16px 0" } }}
     >
-      <Box sx={{ px: 2.5, py: 2, display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+      <Box sx={{ px: 2.5, py: 2, display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid rgba(167,139,250,0.2)" }}>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1, cursor: "pointer" }} onClick={() => goTo("/")}>
           <MenuBook sx={{ color: "primary.main", fontSize: 24 }} />
           <Typography variant="h6" fontWeight={700} sx={{ letterSpacing: "-0.02em" }}>
-            Biblioteca<span style={{ color: "#0071e3" }}>Digital</span>
+            Biblioteca<span style={{ color: "#A78BFA" }}>Digital</span>
           </Typography>
         </Box>
         <IconButton size="small" onClick={() => setDrawerOpen(false)}><Close fontSize="small" /></IconButton>
@@ -122,7 +122,7 @@ export default function Header({ onOpenAuth, notifCount = 0 }) {
           <Box sx={{ display: "flex", alignItems: "center", gap: 1, cursor: "pointer", flex: 1 }} onClick={() => navigate("/")}>
             <MenuBook sx={{ color: "primary.main", fontSize: { xs: 22, md: 28 } }} />
             <Typography variant="h6" sx={{ fontWeight: 700, color: "text.primary", letterSpacing: "-0.02em", fontSize: { xs: "1rem", md: "1.25rem" } }}>
-              Biblioteca<span style={{ color: "#0071e3" }}>Digital</span>
+              Biblioteca<span style={{ color: "#A78BFA" }}>Digital</span>
             </Typography>
           </Box>
 
@@ -153,7 +153,7 @@ export default function Header({ onOpenAuth, notifCount = 0 }) {
                   </Avatar>
                 </IconButton>
                 <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}
-                  PaperProps={{ sx: { mt: 1, minWidth: 200, borderRadius: 3, border: "1px solid rgba(0,0,0,0.08)" } }}
+                  PaperProps={{ sx: { mt: 1, minWidth: 200, borderRadius: 3, border: "1px solid rgba(167,139,250,0.2)" } }}
                   transformOrigin={{ horizontal: "right", vertical: "top" }}
                   anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >

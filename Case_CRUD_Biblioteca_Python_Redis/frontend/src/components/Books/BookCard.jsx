@@ -7,7 +7,7 @@ import { MenuBook } from "@mui/icons-material";
 import BookDetailModal from "./BookDetailModal";
 import { getCoverUrl } from "../../utils/coverImage";
 
-const BRAND_COLOR = "#0071e3";
+const BRAND_COLOR = "#A78BFA";
 
 export default function BookCard({ livro, onUpdate, onRequestAuth }) {
   const [detailOpen, setDetailOpen] = useState(false);
@@ -90,7 +90,7 @@ export default function BookCard({ livro, onUpdate, onRequestAuth }) {
             </Box>
 
             {/* Info compacta abaixo da capa */}
-            <Box sx={{ px: 1, py: 1, flex: 1, bgcolor: "#fff" }}>
+            <Box sx={{ px: 1, py: 1, flex: 1, bgcolor: "rgba(22,11,48,0.95)" }}>
               <Typography
                 sx={{
                   fontSize: 11, fontWeight: 700, lineHeight: 1.3,
@@ -237,9 +237,9 @@ export default function BookCard({ livro, onUpdate, onRequestAuth }) {
           <Box
             sx={{
               px: 2.5, py: 1.5,
-              borderTop: "1px solid rgba(0,0,0,0.05)",
+              borderTop: "1px solid rgba(167,139,250,0.15)",
               display: "flex", justifyContent: "space-between",
-              background: "rgba(0,0,0,0.015)",
+              background: "rgba(167,139,250,0.04)",
             }}
           >
             <Typography variant="caption" color="text.secondary">
