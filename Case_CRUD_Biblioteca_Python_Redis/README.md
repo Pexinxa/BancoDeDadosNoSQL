@@ -1,4 +1,4 @@
-# 📚 Biblioteca Digital
+#  Biblioteca Digital
 
 Sistema de gerenciamento de biblioteca digital com autenticação por roles, upload de capas e controle de empréstimos — construído com **FastAPI + Redis + React + Tailwind CSS**, orquestrado via **Docker Compose**.
 
@@ -6,7 +6,7 @@ Sistema de gerenciamento de biblioteca digital com autenticação por roles, upl
 
 ---
 
-## 🚀 Como Executar
+##  Como Executar
 
 > **Pré-requisito:** Docker Desktop instalado e em execução.
 
@@ -17,9 +17,9 @@ docker compose up --build
 
 | Serviço      | URL                          |
 |--------------|------------------------------|
-| 🌐 Frontend  | http://localhost:5173        |
-| ⚙️ API       | http://localhost:8000        |
-| 📖 Swagger   | http://localhost:8000/docs   |
+|  Frontend  | http://localhost:5173        |
+|  API       | http://localhost:8000        |
+|  Swagger   | http://localhost:8000/docs   |
 
 Para parar:
 
@@ -35,14 +35,14 @@ docker compose down -v
 
 ---
 
-## 🔑 Credenciais de Acesso
+##  Credenciais de Acesso
 
 ### Administrador (hardcoded)
 
 | Campo  | Valor                  |
 |--------|------------------------|
-| E-mail | `admin@biblioteca.com` |
-| Senha  | `admin123`             |
+| E-mail | `admin` |
+| Senha  | `admin`             |
 
 > O admin tem acesso completo: cadastro, edição, exclusão de livros, upload de capas e dashboard de estatísticas.
 
@@ -113,67 +113,6 @@ Cada usuário pode ter até **3 empréstimos simultâneos**.
 - Cadastrar, editar e excluir livros
 - Upload de capa por livro (JPEG, PNG, WebP — até 5 MB)
 - Botões de ação direto nos cards do catálogo
-
----
-
-## Roles e Permissões
-
-| Ação                         | Guest | Usuário | Admin |
-|------------------------------|:-----:|:-------:|:-----:|
-| Ver catálogo                 | ✅    | ✅      | ✅    |
-| Buscar e filtrar livros      | ✅    | ✅      | ✅    |
-| Criar conta / fazer login    | ✅    | —       | —     |
-| Emprestar livro              | ❌    | ✅      | ❌    |
-| Devolver livro               | ❌    | ✅      | ✅    |
-| Ver meus empréstimos         | ❌    | ✅      | ✅    |
-| Cadastrar livro              | ❌    | ❌      | ✅    |
-| Editar livro                 | ❌    | ❌      | ✅    |
-| Excluir livro                | ❌    | ❌      | ✅    |
-| Upload de capa               | ❌    | ❌      | ✅    |
-| Ver estatísticas (dashboard) | ❌    | ❌      | ✅    |
-
----
-
-## Endpoints da API
-
-### Auth
-
-| Método | Rota             | Descrição                          | Acesso  |
-|--------|------------------|------------------------------------|---------|
-| POST   | `/auth/register` | Cadastrar novo usuário             | Público |
-| POST   | `/auth/login`    | Login (`{email, password}` → JWT)  | Público |
-
-### Livros
-
-| Método | Rota           | Descrição                           | Acesso  |
-|--------|----------------|-------------------------------------|---------|
-| GET    | `/livros`      | Listar (paginação, busca, filtros)  | Público |
-| GET    | `/livros/{id}` | Buscar livro por ID                 | Público |
-| POST   | `/livros`      | Cadastrar livro                     | Público |
-
-### Empréstimos
-
-| Método | Rota                      | Descrição                       | Acesso  |
-|--------|---------------------------|---------------------------------|---------|
-| POST   | `/livros/{id}/emprestar`  | Emprestar livro                 | Usuário |
-| POST   | `/livros/{id}/devolver`   | Devolver livro                  | Usuário |
-| GET    | `/meus-emprestimos`       | Listar meus empréstimos ativos  | Usuário |
-
-### Admin
-
-| Método | Rota                        | Descrição                       | Acesso |
-|--------|-----------------------------|---------------------------------|--------|
-| GET    | `/admin/estatisticas`       | Estatísticas gerais do acervo   | Admin  |
-| PUT    | `/admin/livros/{id}`        | Atualizar livro                 | Admin  |
-| DELETE | `/admin/livros/{id}`        | Excluir livro                   | Admin  |
-| POST   | `/admin/livros/{id}/cover`  | Upload de capa (multipart/form) | Admin  |
-
-### Outros
-
-| Método | Rota               | Descrição                        |
-|--------|--------------------|----------------------------------|
-| GET    | `/health`          | Status da API e conexão Redis    |
-| GET    | `/covers/{arquivo}`| Servir imagem de capa estática   |
 
 ---
 
