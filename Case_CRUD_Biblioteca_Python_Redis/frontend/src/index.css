@@ -1,0 +1,4 @@
+/* MUI handles all styling — no global CSS needed */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
