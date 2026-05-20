@@ -35,6 +35,8 @@ services:
   frontend:
     build:
       context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:5000
     container_name: biblioteca_frontend
     ports:
       - "5173:80"

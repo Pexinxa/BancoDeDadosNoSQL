@@ -5,7 +5,7 @@ import {
 } from "@mui/material";
 import { MenuBook } from "@mui/icons-material";
 import BookDetailModal from "./BookDetailModal";
-import { getCoverUrl } from "../../utils/coverImage";
+import { getCoverUrl, getCoverFallbackUrl } from "../../utils/coverImage";
 
 const BRAND_COLOR = "#A78BFA";
 
@@ -53,9 +53,14 @@ export default function BookCard({ livro, onUpdate, onRequestAuth }) {
                 src={getCoverUrl(livro.titulo)}
                 alt={livro.titulo}
                 onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                  if (e.currentTarget.nextSibling)
-                    e.currentTarget.nextSibling.style.display = "flex";
+                  const fallback = getCoverFallbackUrl(livro.titulo);
+                  if (e.currentTarget.src !== fallback) {
+                    e.currentTarget.src = fallback;
+                  } else {
+                    e.currentTarget.style.display = "none";
+                    if (e.currentTarget.nextSibling)
+                      e.currentTarget.nextSibling.style.display = "flex";
+                  }
                 }}
                 style={{
                   width: "100%", height: "100%",
@@ -169,9 +174,14 @@ export default function BookCard({ livro, onUpdate, onRequestAuth }) {
                 src={getCoverUrl(livro.titulo)}
                 alt={livro.titulo}
                 onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                  if (e.currentTarget.nextSibling)
-                    e.currentTarget.nextSibling.style.display = "flex";
+                  const fallback = getCoverFallbackUrl(livro.titulo);
+                  if (e.currentTarget.src !== fallback) {
+                    e.currentTarget.src = fallback;
+                  } else {
+                    e.currentTarget.style.display = "none";
+                    if (e.currentTarget.nextSibling)
+                      e.currentTarget.nextSibling.style.display = "flex";
+                  }
                 }}
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />

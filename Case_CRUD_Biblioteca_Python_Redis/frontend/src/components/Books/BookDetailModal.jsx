@@ -10,7 +10,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useToast } from "../../context/ToastContext";
 import ConfirmDialog from "../common/ConfirmDialog";
 import * as api from "../../services/api";
-import { getCoverUrl } from "../../utils/coverImage";
+import { getCoverUrl, getCoverFallbackUrl } from "../../utils/coverImage";
 
 const BRAND_COLOR = "#7C3AED";
 
@@ -108,7 +108,15 @@ export default function BookDetailModal({ open, onClose, livro, onUpdate, onRequ
             <img
               src={getCoverUrl(livro.titulo)}
               alt={livro.titulo}
-              onError={(e) => { e.currentTarget.style.display = "none"; e.currentTarget.nextSibling.style.display = "flex"; }}
+              onError={(e) => {
+                const fallback = getCoverFallbackUrl(livro.titulo);
+                if (e.currentTarget.src !== fallback) {
+                  e.currentTarget.src = fallback;
+                } else {
+                  e.currentTarget.style.display = "none";
+                  e.currentTarget.nextSibling.style.display = "flex";
+                }
+              }}
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
             <Box sx={{ display: "none", width: "100%", height: "100%", alignItems: "center", justifyContent: "center" }}>

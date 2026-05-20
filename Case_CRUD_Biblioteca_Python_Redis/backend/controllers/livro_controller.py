@@ -56,12 +56,15 @@ def chave_notificacoes_usuario(username: str) -> str:
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
 def titulo_para_filename(titulo: str) -> str:
-    """Ex: 'Harry Potter e a Pedra Filosofal' → 'harry_potter_e_a_pedra_filosofal'"""
+    
+    import re
     s = unicodedata.normalize("NFD", titulo)
     s = "".join(c for c in s if unicodedata.category(c) != "Mn")
     s = s.lower().strip()
-    s = "".join(c if c.isalnum() or c == " " else "" for c in s)
-    return s.replace(" ", "_")
+    s = "".join(c if c.isalnum() or c == " " else " " for c in s)  # especiais → espaço
+    s = re.sub(r"\s+", "_", s.strip())   # colapsa espaços consecutivos → _ único
+    s = re.sub(r"_+", "_", s)            # garante que nunca há __ duplo
+    return s
 
 
 def validar_livro(dados_livro: dict):
@@ -313,7 +316,24 @@ async def upload_capa(titulo: str, file: UploadFile = File(...)):
         raise HTTPException(status_code=413, detail="Arquivo muito grande. Limite: 5 MB.")
 
     os.makedirs(COVERS_DIR, exist_ok=True)
-    filename = titulo_para_filename(titulo) + ".png"
+
+    # Determina extensão pelo content-type do arquivo enviado
+    ext_map = {
+        "image/jpeg": ".jpg",
+        "image/png":  ".png",
+        "image/webp": ".webp",
+        "image/gif":  ".gif",
+    }
+    ext = ext_map.get(file.content_type, ".png")
+    base = titulo_para_filename(titulo)
+
+    # Remove capas anteriores deste livro (qualquer extensão)
+    for old_ext in (".png", ".jpg", ".jpeg", ".webp", ".gif"):
+        old_path = os.path.join(COVERS_DIR, base + old_ext)
+        if os.path.exists(old_path):
+            os.remove(old_path)
+
+    filename = base + ext
     filepath = os.path.join(COVERS_DIR, filename)
 
     async with aiofiles.open(filepath, "wb") as f:

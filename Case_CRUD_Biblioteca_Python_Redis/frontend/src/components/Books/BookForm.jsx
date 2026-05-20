@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import { Close, MenuBook, CloudUpload } from "@mui/icons-material";
 import { useAuth } from "../../context/AuthContext";
+import { useToast } from "../../context/ToastContext";
 import * as api from "../../services/api";
 import { getCoverUrl } from "../../utils/coverImage";
 
@@ -34,6 +35,7 @@ const EMPTY = {
 
 export default function BookForm({ open, onClose, onSave, livro = null }) {
   const { session } = useAuth();
+  const { showToast } = useToast();
   const [form, setForm]           = useState(EMPTY);
   const [loading, setLoading]     = useState(false);
   const [error, setError]         = useState("");
@@ -94,12 +96,14 @@ export default function BookForm({ open, onClose, onSave, livro = null }) {
         categorias: form.categorias,
       });
 
-      // Upload da capa (não bloqueia em caso de falha)
+      // Upload da capa
       if (coverFile && form.titulo) {
         try {
           await api.uploadCapa(form.titulo, coverFile, session);
         } catch (e) {
-          console.warn("Erro ao enviar capa:", e);
+          const detail = e.response?.data?.detail;
+          const msg = Array.isArray(detail) ? detail.join("; ") : detail || "Erro ao enviar capa";
+          showToast(`⚠️ Livro salvo, mas capa falhou: ${msg}`, "warning");
         }
       }
 

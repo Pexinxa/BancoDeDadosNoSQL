@@ -68,11 +68,11 @@ export async function deletarLivro(id, session) {
 
 export async function uploadCapa(titulo, file, session) {
   const formData = new FormData();
-  formData.append("titulo", titulo);
-  formData.append("file", file);
+  formData.append("file", file);   // só o arquivo — titulo vai como query param
   const res = await api.post("/livros/upload-capa", formData, {
     headers: {
       Authorization: session?.token ? `Basic ${session.token}` : undefined,
+      // Content-Type é definido automaticamente pelo axios (multipart/form-data + boundary)
     },
     params: { titulo },
   });
