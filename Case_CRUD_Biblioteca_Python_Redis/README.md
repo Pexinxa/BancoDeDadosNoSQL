@@ -6,6 +6,12 @@ Sistema de gerenciamento de biblioteca digital com autenticação por roles, upl
 
 ---
 
+##  Apresentação em Vídeo 
+
+https://youtu.be/8aBFedhuc60
+
+---
+
 ##  Como Executar
 
 > **Pré-requisito:** Docker Desktop instalado e em execução.
