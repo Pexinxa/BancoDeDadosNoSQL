@@ -47,7 +47,7 @@ docker compose down -v
 
 | Campo  | Valor                  |
 |--------|------------------------|
-| E-mail | `admin` |
+| Usuário | `admin` |
 | Senha  | `admin`             |
 
 > O admin tem acesso completo: cadastro, edição, exclusão de livros, upload de capas e dashboard de estatísticas.
