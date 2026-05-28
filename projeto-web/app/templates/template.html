@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='20' font-size='22'>🎮</text></svg>">
+    <title>{% block titulo %}NEXUS Games{% endblock %} — NEXUS Games</title>
+</head>
+<body>
+
+<header>
+    <a href="{% url 'index' %}" class="brand">
+        <div class="brand-logo">N</div>
+        <div class="brand-name">NEXUS<span>•</span>GAMES</div>
+    </a>
+
+    <nav>
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'quemsomos' %}">Quem somos</a>
+        <a href="{% url 'loja' %}">Produtos</a>
+        <a href="{% url 'addcontato' %}">Contato</a>
+
+        {% if user.is_authenticated %}
+            {% if user.is_staff %}
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+            {% else %}
+                <a href="{% url 'perfil' %}">Perfil</a>
+            {% endif %}
+
+            <div class="nav-divider"></div>
+
+            <div class="nav-user">
+                <div class="nav-avatar">{{ user.username|slice:":1"|upper }}</div>
+                <span class="nav-user-name">Olá, {{ user.username }}</span>
+            </div>
+
+            <form method="post" action="{% url 'logout' %}" class="form-inline" style="margin:0;">
+                {% csrf_token %}
+                <button type="submit" class="btn-logout" style="margin-top:0;">Sair</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn-login-nav">Entrar</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="msg msg-{% if message.tags == 'error' %}error{% elif message.tags == 'success' %}success{% else %}info{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% block conteudo %}{% endblock %}
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="brand-name">NEXUS<span>•</span>GAMES</div>
+            <p class="footer-tagline">A sua plataforma de jogos digitais. Compre, jogue, avalie. O futuro do gaming começa aqui.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Navegação</h4>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'quemsomos' %}">Quem somos</a>
+            <a href="{% url 'loja' %}">Produtos</a>
+            <a href="{% url 'addcontato' %}">Contato</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Conta</h4>
+            {% if user.is_authenticated %}
+                <a href="{% url 'perfil' %}">Meu Perfil</a>
+                <a href="{% url 'alterarsenha' %}">Alterar Senha</a>
+            {% else %}
+                <a href="{% url 'login' %}">Entrar</a>
+                <a href="{% url 'cadastro' %}">Criar conta</a>
+            {% endif %}
+        </div>
+
+        <div class="footer-col">
+            <h4>Suporte</h4>
+            <a href="{% url 'addcontato' %}">Fale conosco</a>
+            <a href="#">FAQ</a>
+            <a href="#">Termos</a>
+        </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 NEXUS Games — Todos os direitos reservados. Feito com Django & Firebase.</p>
+</footer>
+
+<!-- Modal de Exclusão -->
+<div class="modal-backdrop" id="deleteModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 6h18"/>
+                <path d="M8 6V4h8v2"/>
+                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                <path d="M10 11v6"/>
+                <path d="M14 11v6"/>
+            </svg>
+        </div>
+        <h2 class="modal-title" id="modalTitle">Confirmar exclusão</h2>
+        <p class="modal-message">Você tem certeza que deseja excluir</p>
+        <p class="modal-name" id="modalName"></p>
+        <p class="modal-warning">Essa ação não pode ser desfeita.</p>
+        <div class="modal-actions">
+            <button class="modal-btn-cancel" id="modalCancel">Cancelar</button>
+            <a class="modal-btn-confirm" id="modalConfirm" href="#">Excluir</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('deleteModal');
+    const modalName = document.getElementById('modalName');
+    const modalConfirm = document.getElementById('modalConfirm');
+    const modalCancel = document.getElementById('modalCancel');
+
+    function openDeleteModal(url, name) {
+        modalName.textContent = '"' + name + '"';
+        modalConfirm.href = url;
+        modal.classList.add('modal-visible');
+        modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeDeleteModal() {
+        modal.classList.remove('modal-visible');
+        modal.setAttribute('aria-hidden', 'true');
+    }
+
+    if (modalCancel) modalCancel.addEventListener('click', closeDeleteModal);
+
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeDeleteModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeDeleteModal();
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Categorias{% endblock %}
+
+{% block conteudo %}
+
+<div class="page-head">
+    <div>
+        <span class="section-label">Dashboard → Categorias</span>
+        <h1>Categorias</h1>
+    </div>
+    <div>
+        <a href="{% url 'dashboard' %}" class="btn-ghost-sm">← Dashboard</a>
+        <a href="{% url 'addcategoria' %}" class="btn-add">+ Nova Categoria</a>
+    </div>
+</div>
+
+<div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cat in categorias %}
+            <tr>
+                <td>#{{ cat.id }}</td>
+                <td><strong>{{ cat.nome }}</strong></td>
+                <td>
+                    <a href="{% url 'editcategoria' cat.id %}" class="btn-action btn-edit">Editar</a>
+                    <a href="#" class="btn-action btn-del"
+                       onclick="openDeleteModal('{% url 'delcategoria' cat.id %}', '{{ cat.nome }}'); return false;">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" style="text-align:center; color: var(--text-tertiary);">Nenhuma categoria cadastrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

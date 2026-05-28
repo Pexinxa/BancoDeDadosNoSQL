@@ -1,0 +1,25 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Criar Conta{% endblock %}
+
+{% block conteudo %}
+
+<div class="auth-wrap">
+    <div class="auth-card">
+        <span class="section-label" style="display:block; text-align:center;">Bem-vindo</span>
+        <h1>Criar Conta</h1>
+        <p class="auth-sub">Crie sua conta gratuita e comece a comprar.</p>
+
+        <form action="{% url 'cadastro' %}" method="post" style="background:none; border:none; padding:0; box-shadow:none; max-width:none;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Criar conta" style="width:100%;">
+        </form>
+
+        <p class="auth-footer">
+            Já tem uma conta? <a href="{% url 'login' %}">Fazer login</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}

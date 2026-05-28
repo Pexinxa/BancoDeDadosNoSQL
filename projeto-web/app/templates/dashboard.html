@@ -1,0 +1,105 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Dashboard Admin{% endblock %}
+
+{% block conteudo %}
+
+<div class="dash-header">
+    <div>
+        <span class="section-label">Painel Administrativo</span>
+        <h1>Dashboard</h1>
+        <p style="margin-top:8px; color:var(--text-tertiary);">Gerencie toda a operação da loja em um só lugar.</p>
+    </div>
+</div>
+
+<div class="dash-grid">
+    <a href="{% url 'usuarios' %}" class="dash-card">
+        <div class="dash-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+        </div>
+        <div class="dash-card-body">
+            <h3>Usuários</h3>
+            <p>Gerencie os clientes cadastrados.</p>
+        </div>
+        <span class="dash-card-num">{{ total_usuarios }}</span>
+    </a>
+
+    <a href="{% url 'produto' %}" class="dash-card">
+        <div class="dash-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="3"/>
+                <path d="M6 12h4M8 10v4"/>
+                <circle cx="15" cy="11" r="1"/>
+                <circle cx="18" cy="13" r="1"/>
+            </svg>
+        </div>
+        <div class="dash-card-body">
+            <h3>Produtos</h3>
+            <p>Catálogo de jogos da loja.</p>
+        </div>
+        <span class="dash-card-num">{{ total_produtos }}</span>
+    </a>
+
+    <a href="{% url 'categoria' %}" class="dash-card">
+        <div class="dash-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/>
+                <circle cx="7.5" cy="7.5" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+        </div>
+        <div class="dash-card-body">
+            <h3>Categorias</h3>
+            <p>Gêneros e categorias dos jogos.</p>
+        </div>
+        <span class="dash-card-num">{{ total_categorias }}</span>
+    </a>
+
+    <a href="{% url 'compras' %}" class="dash-card">
+        <div class="dash-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+        </div>
+        <div class="dash-card-body">
+            <h3>Vendas</h3>
+            <p>Compras realizadas pelos clientes.</p>
+        </div>
+        <span class="dash-card-num">{{ total_compras }}</span>
+    </a>
+
+    <a href="{% url 'contato' %}" class="dash-card">
+        <div class="dash-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+        </div>
+        <div class="dash-card-body">
+            <h3>Contatos</h3>
+            <p>Mensagens recebidas.</p>
+        </div>
+        <span class="dash-card-num">{{ total_contatos }}</span>
+    </a>
+
+    <a href="{% url 'listaravaliacoes' %}" class="dash-card">
+        <div class="dash-card-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+        </div>
+        <div class="dash-card-body">
+            <h3>Avaliações</h3>
+            <p>Reviews dos clientes (Firebase).</p>
+        </div>
+        <span class="dash-card-num">{{ total_avaliacoes }}</span>
+    </a>
+</div>
+
+{% endblock %}

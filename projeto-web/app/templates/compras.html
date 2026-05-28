@@ -1,0 +1,61 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Compras{% endblock %}
+
+{% block conteudo %}
+
+<div class="page-head">
+    <div>
+        <span class="section-label">Dashboard → Vendas</span>
+        <h1>Compras Realizadas</h1>
+    </div>
+    <a href="{% url 'dashboard' %}" class="btn-ghost-sm">← Dashboard</a>
+</div>
+
+<div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Capa</th>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Qtd</th>
+                <th>Data</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in compras %}
+            <tr>
+                <td>#{{ c.id }}</td>
+                <td><strong>{{ c.cliente_nome }}</strong></td>
+                <td>
+                    {% if c.imagem_produto %}
+                        <img src="{{ c.imagem_produto }}" width="44" height="44" alt="">
+                    {% else %}
+                        <div style="width:44px;height:44px;border-radius:6px;background:var(--bg-tertiary);"></div>
+                    {% endif %}
+                </td>
+                <td>{{ c.nome_produto }}</td>
+                <td><span style="color:var(--accent); font-weight:700;">R$ {{ c.preco }}</span></td>
+                <td>{{ c.quantidade }}</td>
+                <td>{{ c.data|date:"d/m/Y H:i" }}</td>
+                <td>
+                    <a href="#" class="btn-action btn-del"
+                       onclick="openDeleteModal('{% url 'delcompra' c.id %}', 'Compra #{{ c.id }}'); return false;">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" style="text-align:center; color: var(--text-tertiary);">Nenhuma compra registrada ainda.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

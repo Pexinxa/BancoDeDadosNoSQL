@@ -1,0 +1,51 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Contatos{% endblock %}
+
+{% block conteudo %}
+
+<div class="page-head">
+    <div>
+        <span class="section-label">Dashboard → Contatos</span>
+        <h1>Contatos Recebidos</h1>
+    </div>
+    <a href="{% url 'dashboard' %}" class="btn-ghost-sm">← Dashboard</a>
+</div>
+
+<div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Assunto</th>
+                <th>Mensagem</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in contatos %}
+            <tr>
+                <td>#{{ c.id }}</td>
+                <td><strong>{{ c.nome }}</strong></td>
+                <td>{{ c.email }}</td>
+                <td>{{ c.assunto }}</td>
+                <td style="max-width:320px;">{{ c.mensagem|truncatechars:80 }}</td>
+                <td>
+                    <a href="#" class="btn-action btn-del"
+                       onclick="openDeleteModal('{% url 'delcontato' c.id %}', '{{ c.assunto }}'); return false;">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" style="text-align:center; color: var(--text-tertiary);">Nenhum contato recebido ainda.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

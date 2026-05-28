@@ -1,0 +1,21 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Fale Conosco{% endblock %}
+
+{% block conteudo %}
+
+<div class="auth-wrap">
+    <div class="auth-card">
+        <span class="section-label" style="display:block; text-align:center;">Suporte</span>
+        <h1>Fale Conosco</h1>
+        <p class="auth-sub">Tem dúvidas, sugestões ou quer parceria? Manda pra gente!</p>
+
+        <form action="{% url 'addcontato' %}" method="post" style="background:none; border:none; padding:0; box-shadow:none; max-width:none;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Enviar mensagem" style="width:100%;">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

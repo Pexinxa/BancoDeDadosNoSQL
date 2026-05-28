@@ -1,0 +1,73 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Produtos{% endblock %}
+
+{% block conteudo %}
+
+<div class="page-head">
+    <div>
+        <span class="section-label">Dashboard → Produtos</span>
+        <h1>Produtos</h1>
+    </div>
+    <div>
+        <a href="{% url 'dashboard' %}" class="btn-ghost-sm">← Dashboard</a>
+        <a href="{% url 'addproduto' %}" class="btn-add">+ Novo Produto</a>
+    </div>
+</div>
+
+<div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Capa</th>
+                <th>Nome</th>
+                <th>Plataforma</th>
+                <th>Estoque</th>
+                <th>Preço</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prod in produtos %}
+            <tr>
+                <td>#{{ prod.id }}</td>
+                <td>
+                    {% if prod.imagem_url %}
+                        <img src="{{ prod.imagem_url }}" width="48" height="48" alt="">
+                    {% else %}
+                        <div style="width:48px;height:48px;border-radius:6px;background:var(--bg-tertiary);"></div>
+                    {% endif %}
+                </td>
+                <td><strong>{{ prod.nome }}</strong></td>
+                <td><span class="badge badge--blue">{{ prod.plataforma }}</span></td>
+                <td>
+                    {% if prod.quantidade == 0 %}
+                        <span class="badge badge--red">Esgotado</span>
+                    {% elif prod.quantidade < 5 %}
+                        <span class="badge badge--orange">{{ prod.quantidade }} unidades</span>
+                    {% else %}
+                        <span class="badge badge--green">{{ prod.quantidade }}</span>
+                    {% endif %}
+                </td>
+                <td><strong style="color:var(--accent);">R$ {{ prod.preco }}</strong></td>
+                <td>{{ prod.categoria_nome|default:"—" }}</td>
+                <td>
+                    <a href="{% url 'editproduto' prod.id %}" class="btn-action btn-edit">Editar</a>
+                    <a href="#" class="btn-action btn-del"
+                       onclick="openDeleteModal('{% url 'delproduto' prod.id %}', '{{ prod.nome }}'); return false;">
+                        Excluir
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" style="text-align:center; color: var(--text-tertiary);">Nenhum produto cadastrado.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

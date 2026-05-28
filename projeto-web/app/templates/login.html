@@ -1,0 +1,34 @@
+{% extends 'template.html' %}
+
+{% block titulo %}Login{% endblock %}
+
+{% block conteudo %}
+
+<div class="auth-wrap">
+    <div class="auth-card">
+        <span class="section-label" style="display:block; text-align:center;">Acesso</span>
+        <h1>Entrar</h1>
+        <p class="auth-sub">Acesse sua conta para comprar e avaliar jogos.</p>
+
+        {% if erro %}
+            <div class="msg msg-error" style="margin-bottom:18px;">{{ erro }}</div>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="post" style="background:none; border:none; padding:0; box-shadow:none; max-width:none;">
+            {% csrf_token %}
+            <label for="username">Usuário</label>
+            <input type="text" name="username" id="username" placeholder="Seu nome de usuário" required>
+
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password" placeholder="Sua senha" required>
+
+            <input type="submit" value="Entrar" style="width:100%;">
+        </form>
+
+        <p class="auth-footer">
+            Não tem uma conta? <a href="{% url 'cadastro' %}">Cadastre-se</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}
